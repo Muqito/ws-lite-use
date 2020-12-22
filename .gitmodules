@@ -1,0 +1,3 @@
+[submodule "ws-lite"]
+	path = ws-lite
+	url = git@github.com:Muqito/ws-lite.git

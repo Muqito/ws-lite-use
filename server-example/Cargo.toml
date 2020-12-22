@@ -1,0 +1,18 @@
+[package]
+name = "server-example"
+version = "0.4.0"
+authors = ["Christoffer Lantz <christoffer.lantz@androidbutiken.net>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+futures-lite = "1.11.2"
+async-std = "1.8.0"
+async-channel = "1.5.1"
+log = "0.4.11"
+env_logger = "0.8.2"
+dotenv = "0.15.0"
+
+ws-lite = { path = "../ws-lite" }
+ws-lite-server = { path = "../server" }
