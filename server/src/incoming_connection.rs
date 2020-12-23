@@ -1,7 +1,7 @@
 use crate::connection::WsConnection;
 use crate::{TcpStream, WsError};
 use futures_lite::{AsyncReadExt, AsyncWriteExt};
-use ws_lite::accept_connection::AcceptResponse;
+use ws_lite::accept::keys::{AcceptResponse, FromHeaderBuffer};
 
 pub struct IncomingConnection {
     pub(crate) tcp_stream: TcpStream,
@@ -19,7 +19,7 @@ impl IncomingConnection {
             return Err(WsError::ConnectionError);
         }
 
-        if let Some(accept_response) = AcceptResponse::from_buffer(&buffer) {
+        if let Ok(accept_response) = AcceptResponse::from_header_buffer(&buffer) {
             if tcp_stream.write_all(accept_response.as_ref()).await.is_ok() {
                 Ok(WsConnection::new(tcp_stream))
             } else {
